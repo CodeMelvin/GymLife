@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme for devices BEFORE Android 12 -->
+    <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <!-- Background and splash image -->
+        <item name="android:windowBackground">@drawable/launch_background</item>
+        <!-- Disable automatic dark theme inversion -->
+        <item name="android:forceDarkAllowed">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+    </style>
+    <!-- Theme for Android 12 and above (API 31+) -->
+    <style name="LaunchThemeV31" parent="@android:style/Theme.Light.NoTitleBar">
+        <!-- Warna latar belakang splash -->
+        <item name="android:windowSplashScreenBackground">#ffffff</item>
+        <!-- Gambar splash -->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash</item>
+        <!-- Warna background di balik icon -->
+        <item name="android:windowSplashScreenIconBackgroundColor">#ffffff</item>
+        <!-- Nonaktifkan dark mode di splash -->
+        <item name="android:forceDarkAllowed">false</item>
+    </style>
+    <!-- Tema utama aplikasi -->
+    <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowBackground">?android:colorBackground</item>
+    </style>
+</resources>
