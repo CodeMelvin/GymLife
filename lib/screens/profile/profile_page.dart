@@ -268,17 +268,17 @@ class _ProfilePageState extends State<ProfilePage>
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             const SizedBox(height: 12),
-            TextField(
-              controller: nameCtrl,
-              style: const TextStyle(color: Colors.white),
-              decoration: _inputStyle('Name'),
-            ),
-            const SizedBox(height: 8),
-            TextField(
-              controller: descCtrl,
-              style: const TextStyle(color: Colors.white),
-              decoration: _inputStyle('Description'),
-            ),
+          TextField(
+            controller: nameCtrl,
+            style: const TextStyle(color: Colors.white),
+            decoration: _dialogInputStyle('Name'),
+          ),
+          const SizedBox(height: 8),
+          TextField(
+            controller: descCtrl,
+            style: const TextStyle(color: Colors.white),
+            decoration: _dialogInputStyle('Description'),
+          ),
             const SizedBox(height: 8),
             DropdownButtonFormField<String>(
               initialValue: gender.isEmpty ? null : gender,
@@ -295,7 +295,7 @@ class _ProfilePageState extends State<ProfilePage>
                 ),
               ],
               onChanged: (v) => gender = v ?? '',
-              decoration: _inputStyle('Gender'),
+              decoration: _dialogInputStyle('Gender'),
             ),
             const SizedBox(height: 12),
             ElevatedButton(
@@ -332,8 +332,6 @@ class _ProfilePageState extends State<ProfilePage>
     );
   }
 
-  InputDecoration _inputStyle(String label) => _dialogInputStyle(label);
-
   void _openChangePassword(BuildContext context, BuildContext rootContext) {
     final auth = context.read<AuthProvider>();
     final email = context.read<ProfileProvider>().email;
@@ -346,11 +344,14 @@ class _ProfilePageState extends State<ProfilePage>
       builder: (ctx) => _buildDialog(
         title: 'Change Password',
         children: [
-          _passwordField('Old Password', oldCtrl),
+          _ObscuredTextField(label: 'Old Password', controller: oldCtrl),
           const SizedBox(height: 10),
-          _passwordField('New Password', newCtrl),
+          _ObscuredTextField(label: 'New Password', controller: newCtrl),
           const SizedBox(height: 10),
-          _passwordField('Confirm New Password', confirmCtrl),
+          _ObscuredTextField(
+            label: 'Confirm New Password',
+            controller: confirmCtrl,
+          ),
         ],
         onSave: () async {
           if (newCtrl.text.length < 4) {
@@ -407,7 +408,7 @@ class _ProfilePageState extends State<ProfilePage>
             enabled: false,
             controller: TextEditingController(text: _adminEmail),
             style: const TextStyle(color: Colors.white),
-            decoration: _inputStyle('Email').copyWith(
+            decoration: _dialogInputStyle('Email').copyWith(
               disabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: const BorderSide(color: Colors.white70),
@@ -439,10 +440,6 @@ class _ProfilePageState extends State<ProfilePage>
     );
   }
 
-  Widget _passwordField(String label, TextEditingController c) {
-    return _ObscuredTextField(label: label, controller: c);
-  }
-
   Widget _textField(
     String label,
     TextEditingController c, {
@@ -452,7 +449,7 @@ class _ProfilePageState extends State<ProfilePage>
         controller: c,
         maxLines: maxLines,
         style: const TextStyle(color: Colors.white),
-        decoration: _inputStyle(label),
+        decoration: _dialogInputStyle(label),
       );
 
   Widget _buildDialog({

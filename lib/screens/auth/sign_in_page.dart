@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/cart_provider.dart';
 import '../../providers/profile_provider.dart';
+import '../../utils/form_helpers.dart';
 import '../home/home_page.dart';
 import 'forgot_password_page.dart';
 
@@ -79,8 +80,8 @@ class _SignInFormState extends State<SignInForm> {
               style: const TextStyle(color: Colors.white),
               keyboardType: TextInputType.emailAddress,
               autocorrect: false,
-              decoration: _fieldDecoration('Email', 'Please enter your email'),
-              validator: _validateEmail,
+              decoration: fieldDecoration('Email', 'Please enter your email'),
+              validator: validateEmail,
             ),
             const SizedBox(height: 16),
             TextFormField(
@@ -88,8 +89,10 @@ class _SignInFormState extends State<SignInForm> {
               obscureText: _obscurePassword,
               style: const TextStyle(color: Colors.white),
               autocorrect: false,
-              decoration: _fieldDecoration('Password', 'Please enter your password')
-                  .copyWith(
+              decoration: fieldDecoration(
+                'Password',
+                'Please enter your password',
+              ).copyWith(
                 suffixIcon: IconButton(
                   icon: Icon(
                     _obscurePassword ? Icons.visibility_off : Icons.visibility,
@@ -99,7 +102,7 @@ class _SignInFormState extends State<SignInForm> {
                       setState(() => _obscurePassword = !_obscurePassword),
                 ),
               ),
-              validator: _validatePassword,
+              validator: validatePassword,
             ),
             Align(
               alignment: Alignment.centerRight,
@@ -148,55 +151,5 @@ class _SignInFormState extends State<SignInForm> {
         ),
       ),
     );
-  }
-
-  InputDecoration _fieldDecoration(String label, String hint) {
-    return InputDecoration(
-      filled: true,
-      fillColor: Colors.white.withValues(alpha: 0.1),
-      labelText: label,
-      labelStyle: const TextStyle(color: Colors.white),
-      hintText: hint,
-      hintStyle: const TextStyle(color: Color.fromARGB(134, 255, 255, 255)),
-      contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
-      enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.white),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.white),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      errorBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.white),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.white),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      errorStyle: const TextStyle(color: Colors.redAccent),
-    );
-  }
-
-  String? _validateEmail(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Email cannot be empty';
-    }
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if (!emailRegex.hasMatch(value)) {
-      return 'Invalid email format';
-    }
-    return null;
-  }
-
-  String? _validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Password cannot be empty';
-    }
-    if (value.length < 4) {
-      return 'Password must be at least 4 characters';
-    }
-    return null;
   }
 }
