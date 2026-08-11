@@ -8,7 +8,9 @@ https://github.com/user-attachments/assets/48de6210-8f37-42b7-8e91-14228e0a9e54
 
 ## 🎬 Demo
 
-> 🎬 **Watch the demo:** [`Video/GymLife.mp4`](Video/GymLife.mp4) — full walkthrough of the app (sign in, memberships, cart, QR payment, profile).
+https://github.com/user-attachments/assets/48de6210-8f37-42b7-8e91-14228e0a9e54
+
+> 🎬 **Direct link:** [`Video/GymLife.mp4`](Video/GymLife.mp4) — if the player above does not load, open the video directly in the repository.
 
 > 📱 **Try it:** download the latest APK from the [Releases](https://github.com/CodeMelvin/GymLife/releases) page.
 
