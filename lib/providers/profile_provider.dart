@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
@@ -29,9 +29,9 @@ class ProfileProvider extends ChangeNotifier {
     return DateTime.tryParse(_membershipEndDate);
   }
 
-  File? get imageFile {
+  Uint8List? get imageBytes {
     if (_imagePath.isEmpty) return null;
-    return File(_imagePath);
+    return base64Decode(_imagePath);
   }
 
   Future<void> setActiveUser(String email, String name) async {
@@ -92,10 +92,9 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> updateProfileImagePath(String path) async {
-    if (path.isEmpty) return;
-    _imagePath = path;
-    await _update(values: {'image_path': path});
+  Future<void> updateProfileImage(Uint8List bytes) async {
+    _imagePath = base64Encode(bytes);
+    await _update(values: {'image_path': _imagePath});
     notifyListeners();
   }
 

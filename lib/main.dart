@@ -5,8 +5,11 @@ import 'providers/auth_provider.dart';
 import 'providers/cart_provider.dart';
 import 'providers/profile_provider.dart';
 import 'screens/auth/auth_screen.dart';
+import 'services/db_factory.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initDbFactory();
   runApp(const GymLife());
 }
 
