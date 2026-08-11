@@ -60,11 +60,11 @@ class _ProfilePageState extends State<ProfilePage>
                       onTap: _pickImage,
                       child: CircleAvatar(
                         radius: 50,
-                        backgroundImage: profile.imageFile != null
-                            ? FileImage(profile.imageFile!)
+                        backgroundImage: profile.imageBytes != null
+                            ? MemoryImage(profile.imageBytes!)
                             : null,
                         backgroundColor: Colors.white24,
-                        child: profile.imageFile == null
+                        child: profile.imageBytes == null
                             ? const Icon(
                                 Icons.person,
                                 size: 48,
@@ -236,7 +236,9 @@ class _ProfilePageState extends State<ProfilePage>
     final picker = ImagePicker();
     final picked = await picker.pickImage(source: ImageSource.gallery);
     if (picked != null && mounted) {
-      await context.read<ProfileProvider>().updateProfileImagePath(picked.path);
+      await context
+          .read<ProfileProvider>()
+          .updateProfileImage(await picked.readAsBytes());
     }
   }
 

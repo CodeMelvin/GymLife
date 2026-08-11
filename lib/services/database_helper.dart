@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -22,7 +23,8 @@ class DatabaseHelper {
   }
 
   Future<Database> _open() async {
-    final path = debugOverridePath ?? join(await getDatabasesPath(), _dbName);
+    final path = debugOverridePath ??
+        (kIsWeb ? _dbName : join(await getDatabasesPath(), _dbName));
     return openDatabase(
       path,
       version: _dbVersion,

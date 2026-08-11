@@ -105,7 +105,7 @@ class _MenuScreenState extends State<MenuScreen> {
           Consumer<ProfileProvider>(
             builder: (context, profile, _) => GestureDetector(
               onTap: () {
-                if (profile.imageFile != null) {
+                if (profile.imageBytes != null) {
                   showDialog(
                     context: context,
                     builder: (_) => Dialog(
@@ -114,7 +114,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         height: 300,
                         child: ClipOval(
                           child: PhotoView(
-                            imageProvider: FileImage(profile.imageFile!),
+                            imageProvider: MemoryImage(profile.imageBytes!),
                             backgroundDecoration: const BoxDecoration(
                               color: Colors.white,
                             ),
@@ -130,10 +130,10 @@ class _MenuScreenState extends State<MenuScreen> {
               child: CircleAvatar(
                 radius: 22,
                 backgroundColor: Colors.grey[700],
-                backgroundImage: profile.imageFile != null
-                    ? FileImage(profile.imageFile!)
+                backgroundImage: profile.imageBytes != null
+                    ? MemoryImage(profile.imageBytes!)
                     : null,
-                child: profile.imageFile == null
+                child: profile.imageBytes == null
                     ? const Icon(Icons.person, color: Colors.white70)
                     : null,
               ),
