@@ -53,7 +53,7 @@ You can also register a new account from the **Sign Up** tab.
 
 ### Option A - Install the APK (fastest)
 
-Download `gymlife-v1.0.apk` from the [Releases](https://github.com/CodeMelvin/GymLife/releases) section and install it on any Android device (Android 7.0+). The database is created and seeded automatically — the demo account works out of the box.
+Download `gymlife-v1.0.0.apk` from the [Releases](https://github.com/CodeMelvin/GymLife/releases) section and install it on any Android device (Android 7.0+). The database is created and seeded automatically — the demo account works out of the box.
 
 ### Option B - Build with Flutter
 
