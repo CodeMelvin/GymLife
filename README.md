@@ -1,7 +1,3 @@
-
-
-https://github.com/user-attachments/assets/48de6210-8f37-42b7-8e91-14228e0a9e54
-
 # 🏋️ GymLife
 
 > A Flutter fitness membership app. Browse Silver / Gold / Platinum memberships, add them to your cart, and complete payment via QR — with a full profile dashboard.
