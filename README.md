@@ -4,9 +4,9 @@
 
 ## 🎬 Demo
 
-<video src="Video/GymLife.mp4" controls="controls" style="max-width: 300px;"></video>
+![GymLife App Demo](Video/GymLife_preview.webp)
 
-> 🎬 **Direct link:** [`Video/GymLife.mp4`](Video/GymLife.mp4) — if the player above does not load, open the video directly in the repository.
+> 🎬 **Full video:** [`Video/GymLife.mp4`](Video/GymLife.mp4) — the animated preview above shows a 12-second clip; open the full walkthrough for the complete demo.
 
 > 📱 **Try it:** download the latest APK from the [Releases](https://github.com/CodeMelvin/GymLife/releases) page.
 
@@ -119,7 +119,8 @@ lib/
     ├── format.dart                # Rupiah number formatting
     └── form_helpers.dart          # Shared input decoration & validators
 Video/
-└── GymLife.mp4                   # App demo video
+├── GymLife.mp4                   # App demo video (full walkthrough)
+└── GymLife_preview.webp          # Animated 12-second preview (README)
 ```
 ---
 
