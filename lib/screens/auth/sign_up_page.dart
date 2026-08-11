@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/auth_provider.dart';
+import '../../utils/form_helpers.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -75,7 +76,10 @@ class _SignUpFormState extends State<SignUpForm> {
             TextFormField(
               controller: nameInput,
               style: const TextStyle(color: Colors.white, fontSize: 16),
-              decoration: _fieldDecoration('Full name', 'Please enter your full name'),
+              decoration: fieldDecoration(
+                'Full name',
+                'Please enter your full name',
+              ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
                   return 'Name cannot be empty';
@@ -89,16 +93,18 @@ class _SignUpFormState extends State<SignUpForm> {
               style: const TextStyle(color: Colors.white, fontSize: 16),
               keyboardType: TextInputType.emailAddress,
               autocorrect: false,
-              decoration: _fieldDecoration('Email', 'Please enter your email'),
-              validator: _validateEmail,
+              decoration: fieldDecoration('Email', 'Please enter your email'),
+              validator: validateEmail,
             ),
             const SizedBox(height: 16),
             TextFormField(
               controller: passInput,
               obscureText: _obscurePassword,
               style: const TextStyle(color: Colors.white, fontSize: 16),
-              decoration: _fieldDecoration('Password', 'Please enter your password')
-                  .copyWith(
+              decoration: fieldDecoration(
+                'Password',
+                'Please enter your password',
+              ).copyWith(
                 suffixIcon: IconButton(
                   icon: Icon(
                     _obscurePassword ? Icons.visibility_off : Icons.visibility,
@@ -108,14 +114,14 @@ class _SignUpFormState extends State<SignUpForm> {
                       setState(() => _obscurePassword = !_obscurePassword),
                 ),
               ),
-              validator: _validatePassword,
+              validator: validatePassword,
             ),
             const SizedBox(height: 16),
             TextFormField(
               controller: rePassInput,
               obscureText: _obscureConfirmPassword,
               style: const TextStyle(color: Colors.white, fontSize: 16),
-              decoration: _fieldDecoration(
+              decoration: fieldDecoration(
                 'Confirm password',
                 'Please enter your password',
               ).copyWith(
@@ -167,55 +173,5 @@ class _SignUpFormState extends State<SignUpForm> {
         ),
       ),
     );
-  }
-
-  InputDecoration _fieldDecoration(String label, String hint) {
-    return InputDecoration(
-      filled: true,
-      fillColor: Colors.white.withValues(alpha: 0.1),
-      labelText: label,
-      labelStyle: const TextStyle(color: Colors.white),
-      hintText: hint,
-      hintStyle: const TextStyle(color: Color.fromARGB(134, 255, 255, 255)),
-      contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
-      enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.white),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.white),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      errorBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.white),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.white),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      errorStyle: const TextStyle(color: Colors.redAccent),
-    );
-  }
-
-  String? _validateEmail(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Email cannot be empty';
-    }
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if (!emailRegex.hasMatch(value)) {
-      return 'Invalid email format';
-    }
-    return null;
-  }
-
-  String? _validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Password cannot be empty';
-    }
-    if (value.length < 4) {
-      return 'Password must be at least 4 characters';
-    }
-    return null;
   }
 }

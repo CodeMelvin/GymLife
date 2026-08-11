@@ -116,7 +116,8 @@ lib/
 ├── services/
 │   └── database_helper.dart       # SQLite helper + schema + seed demo account
 └── utils/
-    └── format.dart                # Rupiah number formatting
+    ├── format.dart                # Rupiah number formatting
+    └── form_helpers.dart          # Shared input decoration & validators
 Video/
 └── GymLife.mp4                   # App demo video
 ```
